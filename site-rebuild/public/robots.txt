@@ -1,0 +1,5 @@
+# This site is a rebuilt COPY of https://framer-ai.com
+# produced by extract-site for development and comparison. It is not the
+# original and must not be indexed as if it were.
+User-agent: *
+Disallow: /

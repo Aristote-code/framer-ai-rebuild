@@ -1,0 +1,37 @@
+// content for the "Extras NEW" section — extracted by extract-site.
+// Edit values here to re-skin the "Extras NEW" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  header: "The list goes on",
+  default: "https://framer-ai.com/dictionary/on-page-editing",
+  title: "On-page editing",
+  default_2: "https://framer-ai.com/dictionary/mobile-cms",
+  title_2: "Mobile CMS",
+  default_3: "https://framer-ai.com/dictionary/tables-in-rich-text",
+  title_3: "Tables in rich text",
+  default_4: "https://framer-ai.com/dictionary/pagination",
+  title_4: "Pagination",
+  default_5: "https://framer-ai.com/dictionary/markdown",
+  title_5: "Markdown",
+  default_6: "https://framer-ai.com/dictionary/bulk-operations",
+  title_6: "Bulk operations",
+  default_7: "https://framer-ai.com/dictionary/up-to-100k-items",
+  title_7: "Up to 100K items",
+  default_8: "https://framer-ai.com/dictionary/csv-import",
+  title_8: "CSV import",
+  default_9: "https://framer-ai.com/dictionary/code-blocks",
+  title_9: "Code blocks",
+  default_10: "https://framer-ai.com/dictionary/blockquotes",
+  title_10: "Blockquotes",
+  default_11: "https://framer-ai.com/dictionary/google-sheets-sync",
+  title_11: "Google Sheets sync",
+  default_12: "https://framer-ai.com/dictionary/airtable-sync",
+  title_12: "Airtable sync",
+  default_13: "https://framer-ai.com/dictionary/cms-galleries",
+  title_13: "CMS Galleries",
+  default_14: "https://framer-ai.com/dictionary/dynamic-filters",
+  title_14: "Dynamic filters",
+  default_15: "https://framer-ai.com/dictionary/cms-agents",
+  title_15: "CMS agents",
+};

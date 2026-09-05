@@ -1,0 +1,54 @@
+[
+  {
+    "triggerCsId": "205",
+    "triggerTag": "a",
+    "targetCsId": "205",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "332",
+    "triggerTag": "a",
+    "targetCsId": "332",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "680",
+    "triggerTag": "a",
+    "targetCsId": "680",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "734",
+    "triggerTag": "a",
+    "targetCsId": "734",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  }
+]

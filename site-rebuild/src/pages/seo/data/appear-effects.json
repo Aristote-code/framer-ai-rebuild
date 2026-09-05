@@ -1,0 +1,165 @@
+{
+  "effects": [
+    {
+      "id": "appear-9",
+      "csId": "444",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-10",
+      "csId": "446",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-17",
+      "csId": "535",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-18",
+      "csId": "537",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 8px; mask-image: none; outline: transparent solid 1px; backface-visibility: hidden;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-23",
+      "csId": "550",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-28",
+      "csId": "563",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-32",
+      "csId": "607",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-33",
+      "csId": "609",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-36",
+      "csId": "662",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-37",
+      "csId": "664",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-40",
+      "csId": "669",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-41",
+      "csId": "671",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    }
+  ]
+}

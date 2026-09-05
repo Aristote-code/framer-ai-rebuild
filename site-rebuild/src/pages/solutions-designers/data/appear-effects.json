@@ -1,0 +1,160 @@
+{
+  "effects": [
+    {
+      "id": "appear-12",
+      "csId": "285",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-17",
+      "csId": "295",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-22",
+      "csId": "305",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-60",
+      "csId": "401",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-65",
+      "csId": "422",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-70",
+      "csId": "438",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-75",
+      "csId": "458",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-80",
+      "csId": "474",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-85",
+      "csId": "490",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-90",
+      "csId": "508",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-95",
+      "csId": "517",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-109",
+      "csId": "610",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    }
+  ]
+}

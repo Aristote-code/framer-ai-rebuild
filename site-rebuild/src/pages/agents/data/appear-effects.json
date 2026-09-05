@@ -1,0 +1,31 @@
+{
+  "effects": [
+    {
+      "id": "appear-242",
+      "csId": "2313",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "transform": "translate3d(0.814231px, 1.22135px, 0px) scale(0.844141, 0.981771)",
+        "will-change": "auto"
+      },
+      "rawStyle": "--border-bottom-width: 1px; --border-color: rgba(0, 153, 255, 0); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: rgba(0, 153, 255, 0); transform: translate3d(0.814231px, 1.22135px, 0px) scale(0.844141, 0.981771); transform-origin: 50% 50% 0px; will-change: auto;",
+      "duration": 0.2,
+      "easing": "ease-in-out"
+    },
+    {
+      "id": "appear-275",
+      "csId": "3549",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "none",
+        "will-change": "transform"
+      },
+      "rawStyle": "font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"; max-height: calc(-40px + 100vh); flex-direction: column; gap: 12px; position: relative; display: flex; z-index: 100; pointer-events: auto; opacity: 0; transform: none; will-change: transform;",
+      "duration": 0.2,
+      "easing": "ease-in-out"
+    }
+  ]
+}

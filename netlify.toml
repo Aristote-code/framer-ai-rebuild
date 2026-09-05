@@ -1,0 +1,22 @@
+# Netlify build for the rebuilt multi-route site.
+[build]
+  base    = "site-rebuild"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The app is a client-side router (history API), so every deep link must be
+# served index.html or /enterprise and /solutions/designers 404 on refresh.
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
+
+# Belt and braces alongside the noindex meta tag and robots.txt: this is a
+# rebuilt copy of someone else's site and must not be indexed as the original.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

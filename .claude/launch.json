@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "framer-ai-designers-rebuild",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/ariga/Documents/extract-site-main/framer-ai-designers-rebuild && bun run dev"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "rebuild2",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/ariga/Documents/extract-site-main/framer-ai-designers-rebuild2 && bun run dev -- --port 5174"
+      ],
+      "port": 5174
+    }
+  ]
+}

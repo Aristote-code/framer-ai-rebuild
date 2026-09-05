@@ -1,0 +1,35 @@
+// content for the "Security" section — extracted by extract-site.
+// Edit values here to re-skin the "Security" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  header: "Advanced edge architecture",
+  rewrites2x: { src: "../../framerusercontent.com/images/pddWIhAIQqVgFOub1D4NSx8CisY461b.png?width=760&height=440", alt: "Screenshot of Framer’s hosting settings for configuring rewrite rules." },
+  l: "https://framer-ai.com/help/articles/how-to-use-multi-site-with-rewrite-rules",
+  l_2: "Multi site rewrites",
+  text: "Host multiple sites under the same domain and rewrite origins to unify apps like",
+  text_2: "/docs",
+  text_3: "and",
+  text_4: "/blog",
+  text_5: "without complex DNS setup.",
+  capture2x: { src: "../../framerusercontent.com/images/XOhqsSCBbyZDZc6bjLCIecfljyUd70c.png?width=640&height=579", alt: "Framer hosting interface showing site capture settings" },
+  text_6: "Capture groups",
+  text_7: "Use advanced pattern matching to capture dynamic URL segments like",
+  text_8: "/blog/:slug",
+  text_9: "and pass them directly to your origin.",
+  redirects2x: { src: "../../framerusercontent.com/images/UfrZOqjYRWXiiDycoTzLxMi1JYY461b.png?width=760&height=440", alt: "Screenshot of Framer’s hosting settings for managing redirects." },
+  l_3: "https://app.eu.vanta.com/framer.com/trust/ow67ujg7iav0t6qtd1o6r2",
+  l_4: "Smart redirects",
+  text_10: "Keep existing URLs working through migrations, redirects, and site restructures without losing the paths people already know.",
+  headers2x: { src: "../../framerusercontent.com/images/nKROxS6V6S5iGAhx0z683HSM9Dk978d.png?width=760&height=360", alt: "Screenshot of Framer’s hosting settings for configuring custom headers." },
+  l_5: "https://framer-ai.com/help/articles/how-to-use-custom-headers",
+  l_6: "Custom headers",
+  text_11: "Configure security settings like X-Frame-Options and custom HTTP headers through a strict allow-list for safer delivery.",
+  sitemap2x: { src: "../../framerusercontent.com/images/5pGNcxQ6MyzMYzwBlR2uqm2W3C056ba.png?width=293&height=622", alt: "Framer hosting interface showing sitemap settings" },
+  text_12: "Unified sitemaps",
+  text_13: "Automatically merge XML sitemaps from external origins so search engines can index your distributed stack as one site.",
+  canonicalUrl2x: { src: "../../framerusercontent.com/images/LpdqOOywWMaaNu3wyf7ihFkxAU67d2.png?width=760&height=432", alt: "Screenshot of Framer’s hosting settings showing canonical URL configuration." },
+  l_7: "https://framer-ai.com/help/articles/setting-up-a-custom-canonical-url-in-framer",
+  l_8: "Canonical URLs",
+  text_14: "Avoid duplicate content with multi-site rewrites by defining which URL search engines should treat as the primary version.",
+};

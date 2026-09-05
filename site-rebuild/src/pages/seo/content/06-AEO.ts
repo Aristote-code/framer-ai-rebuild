@@ -1,0 +1,36 @@
+// content for the "AEO" section — extracted by extract-site.
+// Edit values here to re-skin the "AEO" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  heroIntro: "Scan your site for AI visibility",
+  regular: "https://framer-ai.com/aeo",
+  label: "Scan your site",
+  text: "Test your site with the",
+  text_2: "https://framer-ai.com/aeo",
+  text_3: "AEO scanner",
+  text_4: "Scan in seconds to see what AI engines can find, understand, and cite, plus what needs work.",
+  text_5: "AI answers are replacing search clicks",
+  text_6: "As searches end without clicks, AI visibility helps users discover your site first.",
+  variant1: "https://framer-ai.com/aeo",
+  scoreNumber: "/100",
+  scoreNumberRow: "Overall AEO Score",
+  pillarScoreRows: "Findable",
+  pillarfindablerating: "Good",
+  quotableRow: "Quotable",
+  pillarquotablerating: "Good",
+  understandableRow: "Understandable",
+  pillarunderstandablerating: "Average",
+  trustworthyRow: "Trustworthy",
+  pillartrustworthyrating: "Good",
+  text_7: "Structure and trust signals matter more than ever",
+  text_8: "AI favors clear metadata and trusted structure. Framer’s",
+  text_9: "/",
+  text_10: "SEO",
+  text_11: "and",
+  text_12: "/cms",
+  text_13: "CMS",
+  text_14: "keep those signals clean.",
+  text_15: "Most sites miss AI signals. Yours can stand out",
+  text_16: "The scanner highlights crawlability, structure, and trust gaps so you know what to fix first.",
+};

@@ -1,0 +1,81 @@
+[
+  {
+    "triggerCsId": "190",
+    "triggerTag": "div",
+    "targetCsId": "193",
+    "targetFramerName": "Variant 2",
+    "delta": {
+      "boxShadow": {
+        "from": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 0.72px 0px 0px inset",
+        "to": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 1px 0px 0px inset"
+      },
+      "backdropFilter": {
+        "from": "blur(7px)",
+        "to": "blur(10px)"
+      },
+      "backgroundColor": {
+        "from": "rgba(0, 0, 0, 0.15)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "borderRadius": {
+        "from": "72px",
+        "to": "100px"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "192",
+    "triggerTag": "div",
+    "targetCsId": "193",
+    "targetFramerName": "Variant 2",
+    "delta": {
+      "boxShadow": {
+        "from": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 0.72px 0px 0px inset",
+        "to": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 1px 0px 0px inset"
+      },
+      "backdropFilter": {
+        "from": "blur(7px)",
+        "to": "blur(10px)"
+      },
+      "backgroundColor": {
+        "from": "rgba(0, 0, 0, 0.15)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "borderRadius": {
+        "from": "72px",
+        "to": "100px"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "193",
+    "triggerFramerName": "Variant 2",
+    "triggerTag": "div",
+    "targetCsId": "193",
+    "targetFramerName": "Variant 2",
+    "delta": {
+      "boxShadow": {
+        "from": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 0.72px 0px 0px inset",
+        "to": "rgba(255, 255, 255, 0.15) 0px 0px 3px 0px inset, rgba(255, 255, 255, 0.15) 0px 1px 0px 0px inset"
+      },
+      "backdropFilter": {
+        "from": "blur(7px)",
+        "to": "blur(10px)"
+      },
+      "backgroundColor": {
+        "from": "rgba(0, 0, 0, 0.15)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "borderRadius": {
+        "from": "72px",
+        "to": "100px"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  }
+]

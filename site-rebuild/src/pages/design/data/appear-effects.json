@@ -1,0 +1,586 @@
+{
+  "effects": [
+    {
+      "id": "appear-16",
+      "csId": "475",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 1,
+      "easing": "linear(0 0%, 0.0041 1.0101010101010102%, 0.0154 2.0202020202020203%, 0.0326 3.0303030303030303%, 0.0545 4.040404040404041%, 0.0802 5.050505050505051%, 0.1088 6.060606060606061%, 0.1396 7.070707070707072%, 0.172 8.080808080808081%, 0.2054 9.090909090909092%, 0.2395 10.101010101010102%, 0.2738 11.111111111111112%, 0.308 12.121212121212123%, 0.3419 13.131313131313133%, 0.3752 14.141414141414144%, 0.4078 15.151515151515154%, 0.4396 16.161616161616163%, 0.4704 17.171717171717173%, 0.5001 18.181818181818183%, 0.5288 19.191919191919194%, 0.5563 20.202020202020204%, 0.5827 21.212121212121215%, 0.6079 22.222222222222225%, 0.6319 23.232323232323235%, 0.6547 24.242424242424246%, 0.6764 25.252525252525256%, 0.6969 26.262626262626267%, 0.7164 27.272727272727277%, 0.7348 28.282828282828287%, 0.7522 29.292929292929298%, 0.7686 30.303030303030308%, 0.784 31.31313131313132%, 0.7985 32.323232323232325%, 0.8122 33.333333333333336%, 0.825 34.343434343434346%, 0.837 35.35353535353536%, 0.8483 36.36363636363637%, 0.8588 37.37373737373738%, 0.8687 38.38383838383839%, 0.8779 39.3939393939394%, 0.8866 40.40404040404041%, 0.8946 41.41414141414142%, 0.9022 42.42424242424243%, 0.9092 43.43434343434344%, 0.9157 44.44444444444445%, 0.9218 45.45454545454546%, 0.9275 46.46464646464647%, 0.9328 47.47474747474748%, 0.9377 48.48484848484849%, 0.9423 49.4949494949495%, 0.9466 50.50505050505051%, 0.9505 51.51515151515152%, 0.9542 52.52525252525253%, 0.9576 53.53535353535354%, 0.9608 54.545454545454554%, 0.9637 55.555555555555564%, 0.9664 56.565656565656575%, 0.969 57.575757575757585%, 0.9713 58.585858585858595%, 0.9735 59.595959595959606%, 0.9755 60.606060606060616%, 0.9774 61.61616161616163%, 0.9791 62.62626262626264%, 0.9807 63.63636363636365%, 0.9822 64.64646464646465%, 0.9836 65.65656565656566%, 0.9848 66.66666666666667%, 0.986 67.67676767676768%, 0.9871 68.68686868686869%, 0.9881 69.6969696969697%, 0.989 70.70707070707071%, 0.9899 71.71717171717172%, 0.9906 72.72727272727273%, 0.9914 73.73737373737374%, 0.9921 74.74747474747475%, 0.9927 75.75757575757576%, 0.9932 76.76767676767678%, 0.9938 77.77777777777779%, 0.9943 78.7878787878788%, 0.9947 79.7979797979798%, 0.9951 80.80808080808082%, 0.9955 81.81818181818183%, 0.9959 82.82828282828284%, 0.9962 83.83838383838385%, 0.9965 84.84848484848486%, 0.9968 85.85858585858587%, 0.997 86.86868686868688%, 0.9973 87.87878787878789%, 0.9975 88.8888888888889%, 0.9977 89.89898989898991%, 0.9979 90.90909090909092%, 0.998 91.91919191919193%, 0.9982 92.92929292929294%, 0.9983 93.93939393939395%, 0.9985 94.94949494949496%, 0.9986 95.95959595959597%, 0.9987 96.96969696969698%, 0.9988 97.979797979798%, 0.9989 98.98989898989899%, 1 100%)"
+    },
+    {
+      "id": "appear-17",
+      "csId": "477",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 1,
+      "easing": "linear(0 0%, 0.0041 1.0101010101010102%, 0.0154 2.0202020202020203%, 0.0326 3.0303030303030303%, 0.0545 4.040404040404041%, 0.0802 5.050505050505051%, 0.1088 6.060606060606061%, 0.1396 7.070707070707072%, 0.172 8.080808080808081%, 0.2054 9.090909090909092%, 0.2395 10.101010101010102%, 0.2738 11.111111111111112%, 0.308 12.121212121212123%, 0.3419 13.131313131313133%, 0.3752 14.141414141414144%, 0.4078 15.151515151515154%, 0.4396 16.161616161616163%, 0.4704 17.171717171717173%, 0.5001 18.181818181818183%, 0.5288 19.191919191919194%, 0.5563 20.202020202020204%, 0.5827 21.212121212121215%, 0.6079 22.222222222222225%, 0.6319 23.232323232323235%, 0.6547 24.242424242424246%, 0.6764 25.252525252525256%, 0.6969 26.262626262626267%, 0.7164 27.272727272727277%, 0.7348 28.282828282828287%, 0.7522 29.292929292929298%, 0.7686 30.303030303030308%, 0.784 31.31313131313132%, 0.7985 32.323232323232325%, 0.8122 33.333333333333336%, 0.825 34.343434343434346%, 0.837 35.35353535353536%, 0.8483 36.36363636363637%, 0.8588 37.37373737373738%, 0.8687 38.38383838383839%, 0.8779 39.3939393939394%, 0.8866 40.40404040404041%, 0.8946 41.41414141414142%, 0.9022 42.42424242424243%, 0.9092 43.43434343434344%, 0.9157 44.44444444444445%, 0.9218 45.45454545454546%, 0.9275 46.46464646464647%, 0.9328 47.47474747474748%, 0.9377 48.48484848484849%, 0.9423 49.4949494949495%, 0.9466 50.50505050505051%, 0.9505 51.51515151515152%, 0.9542 52.52525252525253%, 0.9576 53.53535353535354%, 0.9608 54.545454545454554%, 0.9637 55.555555555555564%, 0.9664 56.565656565656575%, 0.969 57.575757575757585%, 0.9713 58.585858585858595%, 0.9735 59.595959595959606%, 0.9755 60.606060606060616%, 0.9774 61.61616161616163%, 0.9791 62.62626262626264%, 0.9807 63.63636363636365%, 0.9822 64.64646464646465%, 0.9836 65.65656565656566%, 0.9848 66.66666666666667%, 0.986 67.67676767676768%, 0.9871 68.68686868686869%, 0.9881 69.6969696969697%, 0.989 70.70707070707071%, 0.9899 71.71717171717172%, 0.9906 72.72727272727273%, 0.9914 73.73737373737374%, 0.9921 74.74747474747475%, 0.9927 75.75757575757576%, 0.9932 76.76767676767678%, 0.9938 77.77777777777779%, 0.9943 78.7878787878788%, 0.9947 79.7979797979798%, 0.9951 80.80808080808082%, 0.9955 81.81818181818183%, 0.9959 82.82828282828284%, 0.9962 83.83838383838385%, 0.9965 84.84848484848486%, 0.9968 85.85858585858587%, 0.997 86.86868686868688%, 0.9973 87.87878787878789%, 0.9975 88.8888888888889%, 0.9977 89.89898989898991%, 0.9979 90.90909090909092%, 0.998 91.91919191919193%, 0.9982 92.92929292929294%, 0.9983 93.93939393939395%, 0.9985 94.94949494949496%, 0.9986 95.95959595959597%, 0.9987 96.96969696969698%, 0.9988 97.979797979798%, 0.9989 98.98989898989899%, 1 100%)"
+    },
+    {
+      "id": "appear-20",
+      "csId": "482",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 1,
+      "easing": "linear(0 0%, 0.0041 1.0101010101010102%, 0.0154 2.0202020202020203%, 0.0326 3.0303030303030303%, 0.0545 4.040404040404041%, 0.0802 5.050505050505051%, 0.1088 6.060606060606061%, 0.1396 7.070707070707072%, 0.172 8.080808080808081%, 0.2054 9.090909090909092%, 0.2395 10.101010101010102%, 0.2738 11.111111111111112%, 0.308 12.121212121212123%, 0.3419 13.131313131313133%, 0.3752 14.141414141414144%, 0.4078 15.151515151515154%, 0.4396 16.161616161616163%, 0.4704 17.171717171717173%, 0.5001 18.181818181818183%, 0.5288 19.191919191919194%, 0.5563 20.202020202020204%, 0.5827 21.212121212121215%, 0.6079 22.222222222222225%, 0.6319 23.232323232323235%, 0.6547 24.242424242424246%, 0.6764 25.252525252525256%, 0.6969 26.262626262626267%, 0.7164 27.272727272727277%, 0.7348 28.282828282828287%, 0.7522 29.292929292929298%, 0.7686 30.303030303030308%, 0.784 31.31313131313132%, 0.7985 32.323232323232325%, 0.8122 33.333333333333336%, 0.825 34.343434343434346%, 0.837 35.35353535353536%, 0.8483 36.36363636363637%, 0.8588 37.37373737373738%, 0.8687 38.38383838383839%, 0.8779 39.3939393939394%, 0.8866 40.40404040404041%, 0.8946 41.41414141414142%, 0.9022 42.42424242424243%, 0.9092 43.43434343434344%, 0.9157 44.44444444444445%, 0.9218 45.45454545454546%, 0.9275 46.46464646464647%, 0.9328 47.47474747474748%, 0.9377 48.48484848484849%, 0.9423 49.4949494949495%, 0.9466 50.50505050505051%, 0.9505 51.51515151515152%, 0.9542 52.52525252525253%, 0.9576 53.53535353535354%, 0.9608 54.545454545454554%, 0.9637 55.555555555555564%, 0.9664 56.565656565656575%, 0.969 57.575757575757585%, 0.9713 58.585858585858595%, 0.9735 59.595959595959606%, 0.9755 60.606060606060616%, 0.9774 61.61616161616163%, 0.9791 62.62626262626264%, 0.9807 63.63636363636365%, 0.9822 64.64646464646465%, 0.9836 65.65656565656566%, 0.9848 66.66666666666667%, 0.986 67.67676767676768%, 0.9871 68.68686868686869%, 0.9881 69.6969696969697%, 0.989 70.70707070707071%, 0.9899 71.71717171717172%, 0.9906 72.72727272727273%, 0.9914 73.73737373737374%, 0.9921 74.74747474747475%, 0.9927 75.75757575757576%, 0.9932 76.76767676767678%, 0.9938 77.77777777777779%, 0.9943 78.7878787878788%, 0.9947 79.7979797979798%, 0.9951 80.80808080808082%, 0.9955 81.81818181818183%, 0.9959 82.82828282828284%, 0.9962 83.83838383838385%, 0.9965 84.84848484848486%, 0.9968 85.85858585858587%, 0.997 86.86868686868688%, 0.9973 87.87878787878789%, 0.9975 88.8888888888889%, 0.9977 89.89898989898991%, 0.9979 90.90909090909092%, 0.998 91.91919191919193%, 0.9982 92.92929292929294%, 0.9983 93.93939393939395%, 0.9985 94.94949494949496%, 0.9986 95.95959595959597%, 0.9987 96.96969696969698%, 0.9988 97.979797979798%, 0.9989 98.98989898989899%, 1 100%)"
+    },
+    {
+      "id": "appear-21",
+      "csId": "484",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 1,
+      "easing": "linear(0 0%, 0.0041 1.0101010101010102%, 0.0154 2.0202020202020203%, 0.0326 3.0303030303030303%, 0.0545 4.040404040404041%, 0.0802 5.050505050505051%, 0.1088 6.060606060606061%, 0.1396 7.070707070707072%, 0.172 8.080808080808081%, 0.2054 9.090909090909092%, 0.2395 10.101010101010102%, 0.2738 11.111111111111112%, 0.308 12.121212121212123%, 0.3419 13.131313131313133%, 0.3752 14.141414141414144%, 0.4078 15.151515151515154%, 0.4396 16.161616161616163%, 0.4704 17.171717171717173%, 0.5001 18.181818181818183%, 0.5288 19.191919191919194%, 0.5563 20.202020202020204%, 0.5827 21.212121212121215%, 0.6079 22.222222222222225%, 0.6319 23.232323232323235%, 0.6547 24.242424242424246%, 0.6764 25.252525252525256%, 0.6969 26.262626262626267%, 0.7164 27.272727272727277%, 0.7348 28.282828282828287%, 0.7522 29.292929292929298%, 0.7686 30.303030303030308%, 0.784 31.31313131313132%, 0.7985 32.323232323232325%, 0.8122 33.333333333333336%, 0.825 34.343434343434346%, 0.837 35.35353535353536%, 0.8483 36.36363636363637%, 0.8588 37.37373737373738%, 0.8687 38.38383838383839%, 0.8779 39.3939393939394%, 0.8866 40.40404040404041%, 0.8946 41.41414141414142%, 0.9022 42.42424242424243%, 0.9092 43.43434343434344%, 0.9157 44.44444444444445%, 0.9218 45.45454545454546%, 0.9275 46.46464646464647%, 0.9328 47.47474747474748%, 0.9377 48.48484848484849%, 0.9423 49.4949494949495%, 0.9466 50.50505050505051%, 0.9505 51.51515151515152%, 0.9542 52.52525252525253%, 0.9576 53.53535353535354%, 0.9608 54.545454545454554%, 0.9637 55.555555555555564%, 0.9664 56.565656565656575%, 0.969 57.575757575757585%, 0.9713 58.585858585858595%, 0.9735 59.595959595959606%, 0.9755 60.606060606060616%, 0.9774 61.61616161616163%, 0.9791 62.62626262626264%, 0.9807 63.63636363636365%, 0.9822 64.64646464646465%, 0.9836 65.65656565656566%, 0.9848 66.66666666666667%, 0.986 67.67676767676768%, 0.9871 68.68686868686869%, 0.9881 69.6969696969697%, 0.989 70.70707070707071%, 0.9899 71.71717171717172%, 0.9906 72.72727272727273%, 0.9914 73.73737373737374%, 0.9921 74.74747474747475%, 0.9927 75.75757575757576%, 0.9932 76.76767676767678%, 0.9938 77.77777777777779%, 0.9943 78.7878787878788%, 0.9947 79.7979797979798%, 0.9951 80.80808080808082%, 0.9955 81.81818181818183%, 0.9959 82.82828282828284%, 0.9962 83.83838383838385%, 0.9965 84.84848484848486%, 0.9968 85.85858585858587%, 0.997 86.86868686868688%, 0.9973 87.87878787878789%, 0.9975 88.8888888888889%, 0.9977 89.89898989898991%, 0.9979 90.90909090909092%, 0.998 91.91919191919193%, 0.9982 92.92929292929294%, 0.9983 93.93939393939395%, 0.9985 94.94949494949496%, 0.9986 95.95959595959597%, 0.9987 96.96969696969698%, 0.9988 97.979797979798%, 0.9989 98.98989898989899%, 1 100%)"
+    },
+    {
+      "id": "appear-30",
+      "csId": "535",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-31",
+      "csId": "537",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-34",
+      "csId": "544",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-35",
+      "csId": "546",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-38",
+      "csId": "586",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-39",
+      "csId": "588",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-55",
+      "csId": "948",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-56",
+      "csId": "950",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-60",
+      "csId": "958",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-61",
+      "csId": "960",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-65",
+      "csId": "968",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-66",
+      "csId": "970",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-68",
+      "csId": "978",
+      "framerName": "Breakpoints",
+      "appearId": null,
+      "initial": {
+        "will-change": "transform",
+        "opacity": "0.25",
+        "transform": "translateX(-20px) translateY(20px)"
+      },
+      "rawStyle": "will-change: transform; opacity: 0.25; transform: translateX(-20px) translateY(20px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-101",
+      "csId": "1057",
+      "framerName": "References",
+      "appearId": null,
+      "initial": {
+        "will-change": "transform",
+        "opacity": "0.25",
+        "transform": "translateX(-20px) translateY(20px)"
+      },
+      "rawStyle": "will-change: transform; opacity: 0.25; transform: translateX(-20px) translateY(20px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-103",
+      "csId": "1063",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-104",
+      "csId": "1065",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-108",
+      "csId": "1084",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-109",
+      "csId": "1086",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-113",
+      "csId": "1100",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-114",
+      "csId": "1102",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-118",
+      "csId": "1120",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-119",
+      "csId": "1122",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-123",
+      "csId": "1136",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-124",
+      "csId": "1138",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-128",
+      "csId": "1152",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-129",
+      "csId": "1154",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-133",
+      "csId": "1170",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-134",
+      "csId": "1172",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-138",
+      "csId": "1179",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-139",
+      "csId": "1181",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-141",
+      "csId": "1200",
+      "framerName": "Interactions",
+      "appearId": null,
+      "initial": {
+        "will-change": "transform",
+        "opacity": "0.25",
+        "transform": "translateX(-20px) translateY(20px)"
+      },
+      "rawStyle": "will-change: transform; opacity: 0.25; transform: translateX(-20px) translateY(20px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-152",
+      "csId": "1272",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0",
+        "transform": "translateZ(0px)"
+      },
+      "rawStyle": "position: absolute; inset: 0px; opacity: 0; visibility: hidden; pointer-events: none; isolation: isolate; transform: translateZ(0px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-153",
+      "csId": "1274",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.98",
+        "transform": "translateZ(0px)",
+        "will-change": "mask-image, opacity"
+      },
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: none;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-155",
+      "csId": "1283",
+      "framerName": "Canvas",
+      "appearId": null,
+      "initial": {
+        "will-change": "transform",
+        "opacity": "0.25",
+        "transform": "translateX(-20px) translateY(20px)"
+      },
+      "rawStyle": "will-change: transform; opacity: 0.25; transform: translateX(-20px) translateY(20px);",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-184",
+      "csId": "1906",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "0.5",
+        "transform": "translate3d(-12.8203px, 0px, 0px)",
+        "will-change": "transform"
+      },
+      "rawStyle": "--extracted-2gg91v: \"wght\" 450; --extracted-r6o4lv: rgb(255, 255, 255); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; opacity: 0.5; transform: translate3d(-12.8203px, 0px, 0px); will-change: transform; transform-origin: 50% 50% 0px;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-185",
+      "csId": "1910",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "opacity": "1",
+        "transform": "translate3d(12.8203px, 0px, 0px)",
+        "will-change": "transform"
+      },
+      "rawStyle": "--extracted-2gg91v: \"wght\" 450; --extracted-r6o4lv: rgb(255, 255, 255); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; opacity: 1; transform: translate3d(12.8203px, 0px, 0px); transform-origin: 50% 50% 0px; will-change: transform;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-186",
+      "csId": "1913",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "transform": "translateY(-50%) translate3d(0px, 45.3252px, 0px)"
+      },
+      "rawStyle": "background-color: rgb(255, 255, 255); border-radius: 100%; transform: translateY(-50%) translate3d(0px, 45.3252px, 0px); transform-origin: 50% 50% 0px;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-187",
+      "csId": "1914",
+      "framerName": null,
+      "appearId": null,
+      "initial": {
+        "transform": "translate3d(0px, 47.0079px, 0px)"
+      },
+      "rawStyle": "image-rendering: pixelated; flex-shrink: 0; transform: translate3d(0px, 47.0079px, 0px); transform-origin: 50% 50% 0px;",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-188",
+      "csId": "1918",
+      "framerName": "Image 3",
+      "appearId": "1oyrk3t",
+      "initial": {
+        "filter": "contrast(1.1) saturate(1.15)",
+        "will-change": "transform",
+        "opacity": "0.0987009",
+        "transform": "scale(0.81956)"
+      },
+      "rawStyle": "--border-bottom-width: 1px; --border-color: var(--token-c534b380-e14e-4ddc-9802-ad88d1f94f8e, rgba(255, 255, 255, 0.08)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; --corner-shape-fallback: 0.752; corner-shape: superellipse(1.5); filter: contrast(1.1) saturate(1.15); will-change: transform; border-bottom-left-radius: calc(15px*var(--one-if-corner-shape-supported,var(--corner-shape-fallback,1))); border-bottom-right-radius: calc(15px*var(--one-if-corner-shape-supported,var(--corner-shape-fallback,1))); border-top-left-radius: calc(15px*var(--one-if-corner-shape-supported,var(--corner-shape-fallback,1))); border-top-right-radius: calc(15px*var(--one-if-corner-shape-supported,var(--corner-shape-fallback,1))); opacity: 0.0987009; transform: scale(0.81956);",
+      "duration": 0.75,
+      "easing": "linear"
+    }
+  ]
+}

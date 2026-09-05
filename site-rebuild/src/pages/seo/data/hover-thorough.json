@@ -1,0 +1,70 @@
+[
+  {
+    "triggerCsId": "1241",
+    "triggerTag": "a",
+    "targetCsId": "1241",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "1614",
+    "triggerTag": "a",
+    "targetCsId": "1614",
+    "delta": {
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgb(255, 255, 255)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "1774",
+    "triggerTag": "a",
+    "targetCsId": "1774",
+    "delta": {
+      "color": {
+        "from": "rgba(255, 255, 255, 0.6)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "borderColor": {
+        "from": "rgba(255, 255, 255, 0.6)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgba(255, 255, 255, 0.6)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  },
+  {
+    "triggerCsId": "1775",
+    "triggerTag": "a",
+    "targetCsId": "1775",
+    "delta": {
+      "color": {
+        "from": "rgba(255, 255, 255, 0.6)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "borderColor": {
+        "from": "rgba(255, 255, 255, 0.6)",
+        "to": "rgb(255, 255, 255)"
+      },
+      "textDecoration": {
+        "from": "underline 1px rgba(255, 255, 255, 0.3)",
+        "to": "underline 1px rgba(255, 255, 255, 0.6)"
+      }
+    },
+    "duration": "0s",
+    "easing": "ease"
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "effects": [
+    {
+      "id": "appear-26",
+      "csId": "1616",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-28",
+      "csId": "1632",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-30",
+      "csId": "1648",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-32",
+      "csId": "1664",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-34",
+      "csId": "1680",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-36",
+      "csId": "1696",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-38",
+      "csId": "1712",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    },
+    {
+      "id": "appear-40",
+      "csId": "1728",
+      "framerName": "BG Image",
+      "appearId": null,
+      "initial": {
+        "filter": "contrast(1) saturate(1)",
+        "opacity": "0"
+      },
+      "rawStyle": "filter:contrast(1) saturate(1);mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;-webkit-filter:contrast(1) saturate(1);-webkit-mask:linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%) add;opacity:0",
+      "duration": 0.75,
+      "easing": "linear"
+    }
+  ]
+}

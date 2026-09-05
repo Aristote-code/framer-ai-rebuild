@@ -1,0 +1,37 @@
+// content for the "Extras" section — extracted by extract-site.
+// Edit values here to re-skin the "Extras" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  header: "Everything Framer handles to keep sites fast at any scale",
+  default: "https://framer-ai.com/dictionary/core-web-vitals",
+  title: "Core Web Vitals",
+  default_2: "https://framer-ai.com/dictionary/static-generation",
+  title_2: "Static Generation",
+  default_3: "https://framer-ai.com/dictionary/global-cdn",
+  title_3: "Global CDN",
+  default_4: "https://framer-ai.com/dictionary/edge-caching",
+  title_4: "Edge Caching",
+  default_5: "https://framer-ai.com/dictionary/image-optimization",
+  title_5: "Image Optimization",
+  default_6: "https://framer-ai.com/dictionary/instant-navigation",
+  title_6: "Instant Navigation",
+  default_7: "https://framer-ai.com/dictionary/route-prefetching",
+  title_7: "Route Prefetching",
+  default_8: "https://framer-ai.com/dictionary/lazy-loading",
+  title_8: "Lazy Loading",
+  default_9: "https://framer-ai.com/dictionary/code-splitting",
+  title_9: "Code Splitting",
+  default_10: "https://framer-ai.com/dictionary/responsive-images",
+  title_10: "Responsive Images",
+  default_11: "https://framer-ai.com/dictionary/brotli-compression",
+  title_11: "Brotli Compression",
+  default_12: "https://framer-ai.com/dictionary/font-subsetting",
+  title_12: "Font Subsetting",
+  default_13: "https://framer-ai.com/dictionary/resource-culling",
+  title_13: "Resource Culling",
+  default_14: "https://framer-ai.com/dictionary/svg-optimization",
+  title_14: "SVG Optimization",
+  default_15: "https://framer-ai.com/dictionary/seo-ready",
+  title_15: "SEO Ready",
+};

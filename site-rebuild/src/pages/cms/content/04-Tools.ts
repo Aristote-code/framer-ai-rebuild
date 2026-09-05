@@ -1,0 +1,37 @@
+// content for the "Tools" section — extracted by extract-site.
+// Edit values here to re-skin the "Tools" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  header: "The CMS, built for how teams work",
+  dynamicIsland: { src: "/images/0a2a7cfb-sHQsKwHsePaBOMy5WRzZXEPX42abb.png?width=190&height=60", alt: "Dynamic island interface preview" },
+  searchBar: "website.com/changelog",
+  top: "Sep 5, 2026",
+  bottom: "Dynamic Optimization",
+  bottom_2: "|",
+  content: "Introducing Dynamic Optimization, an all-new way of optimizing your published websites. All sites now optimize in seconds, even large ones. And adding pages has no impact on optimization time. Pages are now optimized on first visit, and we cache the result until the next publish. Your most visited pages are pre-optimized on publish, ensuring consistent performance and full visibility into any issue.",
+  l: "https://framer-ai.com/help/articles/on-page-editing",
+  l_2: "Edit content anywhere",
+  text: "Update collections directly on your site, on any device. Teammates can edit content on mobile without ever opening the canvas.",
+  visual: { src: "../../framerusercontent.com/images/2eW4QZo0H6jzU9KS8gBFYuI2Qe823.png?width=1120&height=878", alt: "CMS visual interface preview" },
+  text_2: "Visual content editor",
+  text_3: "Edit and publish content directly on the canvas. See your changes in context without switching to a separate editor or leaving your layout.",
+  title: "Site Settings",
+  title_2: "Title",
+  value: "{{Title}} – Comet Resources",
+  title_3: "URL",
+  value_2: "/resources/:slug/",
+  title_4: "Page Description",
+  description: "{{Category}} – {{Seo Description}}",
+  helpText: "Plain text values from the CMS can be used for the title & description. For example, a field named “Title” can be referenced as",
+  helpText_2: "{{Title}}",
+  helpText_3: "to display unique content per page.",
+  cmsVariables: "CMS Variables:",
+  cmsVariables_2: "Title, SEO Description, Category, Intro, Slug, Quote",
+  l_3: "/seo",
+  l_4: "Automatic SEO",
+  text_4: "Optimize every CMS page automatically, from dynamic titles and descriptions to schema and open graph tags.",
+  visual_2: { src: "../../framerusercontent.com/images/OSzCya3PQ1P2Iip45HWW52H2FKY9e91.png?width=1680&height=1317", alt: "CMS visual interface preview" },
+  text_5: "Drafts & publishing",
+  text_6: "Write and stage content without it going live. Preview your changes first, then publish when ready, whether you’re working solo or with a team.",
+};

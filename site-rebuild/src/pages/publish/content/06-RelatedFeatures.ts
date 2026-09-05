@@ -1,0 +1,37 @@
+// content for the "Related Features" section — extracted by extract-site.
+// Edit values here to re-skin the "Related Features" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  title: "Everything your site needs, built into Framer",
+  large: "/design",
+  title_2: "Design",
+  title_3: "Design responsive sites on a visual canvas.",
+  large_2: "https://framer-ai.com/ai",
+  title_4: "AI",
+  title_5: "Generate, iterate, and improve sites faster.",
+  large_3: "/agents",
+  title_6: "Agents",
+  title_7: "Use AI to edit and maintain pages.",
+  large_4: "https://framer-ai.com/agents/external",
+  title_8: "External agents",
+  title_9: "Connect Claude Code, Cursor, Codex, and more.",
+  large_5: "/cms",
+  title_10: "CMS",
+  title_11: "Structure content and publish dynamic pages.",
+  large_6: "/collaborate",
+  title_12: "Collaborate",
+  title_13: "Work together with branches and staging.",
+  large_7: "/seo",
+  title_14: "SEO",
+  title_15: "Improve visibility with built-in SEO tools.",
+  large_8: "https://framer-ai.com/convert",
+  title_16: "Convert",
+  title_17: "Build, test, and grow high-converting sites.",
+  large_9: "/hosting",
+  title_18: "Hosting",
+  title_19: "Deploy fast sites on global infrastructure.",
+  large_10: "/performance",
+  title_20: "Performance",
+  title_21: "Keep pages fast with built-in optimization.",
+};

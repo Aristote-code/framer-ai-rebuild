@@ -1,0 +1,37 @@
+// content for the "Extras NEW" section — extracted by extract-site.
+// Edit values here to re-skin the "Extras NEW" section (copy, photos, links) without touching
+// its layout, styles, or motion.
+
+export default {
+  header: "A complete workflow for professional sites",
+  default: "https://framer-ai.com/dictionary/multiplayer-cursors",
+  title: "Multiplayer cursors",
+  default_2: "https://framer-ai.com/dictionary/auto-save",
+  title_2: "Auto-save",
+  default_3: "https://framer-ai.com/dictionary/share-for-review",
+  title_3: "Share for review",
+  default_4: "https://framer-ai.com/dictionary/password-protection",
+  title_4: "Password protection",
+  default_5: "https://framer-ai.com/dictionary/custom-domains",
+  title_5: "Custom domains",
+  default_6: "https://framer-ai.com/dictionary/team-workspaces",
+  title_6: "Team workspaces",
+  default_7: "https://framer-ai.com/dictionary/transfer-ownership",
+  title_7: "Transfer ownership",
+  default_8: "https://framer-ai.com/dictionary/guest-editors",
+  title_8: "Guest editors",
+  default_9: "https://framer-ai.com/dictionary/version-history",
+  title_9: "Version history",
+  default_10: "https://framer-ai.com/dictionary/rollback",
+  title_10: "Rollback",
+  default_11: "https://framer-ai.com/dictionary/layout-templates",
+  title_11: "Layout templates",
+  default_12: "https://framer-ai.com/dictionary/invite-links",
+  title_12: "Invite links",
+  default_13: "https://framer-ai.com/dictionary/asset-library",
+  title_13: "Asset library",
+  default_14: "https://framer-ai.com/dictionary/free-expert-access",
+  title_14: "Free Expert access",
+  default_15: "https://framer-ai.com/dictionary/sso",
+  title_15: "SSO",
+};

@@ -1,0 +1,25 @@
+# deps / build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Captured references: hundreds of MB of third-party page dumps, screenshots
+# and assets. Regenerate with `extract-site <url>` rather than versioning them.
+reference/
+reference-prev/
+
+# The upstream clone kept alongside for comparison (it's its own git repo).
+extract-site/
+
+# Rebuild output from earlier sessions on other sites — not part of this
+# project. `site-rebuild/` (the current framer-ai site) IS tracked.
+mattis-rebuild/
+tourly-rebuild/
+portfoleon-rebuild/
+framer-ai-designers-rebuild/
+framer-ai-designers-rebuild2/
+site-rebuild-prev/
+
+# logs / scratch
+*.log
+.DS_Store

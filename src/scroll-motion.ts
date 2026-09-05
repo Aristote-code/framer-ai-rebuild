@@ -1,0 +1,506 @@
+import { Page } from 'playwright';
+import { writeFile, mkdir } from 'node:fs/promises';
+import { join } from 'node:path';
+import type { SectionInfo } from './types.ts';
+
+// SCROLL-LINKED MOTION CAPTURE
+//
+// The CDP Animation listener catches CSS/WAAPI animations that fire at
+// discrete moments (entrance, hover, marquee). It does NOT catch
+// continuously scroll-driven motion — like the framer hero that shrinks
+// + pins in the center as you scroll, or background parallax layers.
+// Those are JS-driven `transform` updates (lenis + framer-motion's
+// useScroll, or GSAP ScrollTrigger.scrub) that we never see in the
+// Animation domain.
+//
+// This module samples every "interesting" element's bbox + transform +
+// opacity at N scroll positions, then classifies each element's behavior
+// as one of: normal flow, pinned (sticky-following-scroll), parallax,
+// scroll-scaled, scroll-faded, pin-scrub (the hero pattern).
+
+export type ScrollBehaviorKind =
+  | 'pinned'           // element stays at fixed viewport position as scroll progresses
+  | 'parallax'         // element moves slower than scroll
+  | 'scroll-scaled'    // transform scale changes with scroll
+  | 'scroll-translated'// transform translate changes with scroll (independent of normal flow)
+  | 'scroll-faded'     // opacity changes with scroll position
+  | 'pin-scrub'        // pinned AND has transform delta (the hero shrink pattern)
+  | 'scroll-rotated';
+
+export interface ScrollBehavior {
+  selector: string;
+  csId?: string;          // matches data-cs-id from computed-styles.ts (for runtime element lookup)
+  framerName?: string;
+  tag: string;
+  kind: ScrollBehaviorKind[];
+  // The scroll range over which this behavior is active
+  scrollFrom: number;
+  scrollTo: number;
+  // viewport-y trajectory: if vpTop stays roughly constant while scrollY changes,
+  // element is pinned. slope is dVpTop/dScrollY.
+  vpTopSlope: number;
+  // Transform delta — the visible change
+  scaleStart?: number;
+  scaleEnd?: number;
+  translateXStart?: number;
+  translateXEnd?: number;
+  translateYStart?: number;
+  translateYEnd?: number;
+  rotateStart?: number;
+  rotateEnd?: number;
+  opacityStart?: number;
+  opacityEnd?: number;
+  // Full sampled trajectory. START/END ALONE IS NOT ENOUGH: real scroll
+  // effects are frequently non-monotonic — framer's hero scales 1 → 2.15 →
+  // 1.18 across its range, so a two-point lerp erases the entire bloom and
+  // the rebuild looks nothing like the original. Only channels that actually
+  // vary are populated. `s` is the scroll offset in px.
+  keyframes?: Array<{
+    s: number;
+    scale?: number;
+    tx?: number;
+    ty?: number;
+    rot?: number;
+    op?: number;
+  }>;
+  // true when a channel reverses direction inside the range (peak/valley) —
+  // the runtime MUST interpolate piecewise through `keyframes`, never lerp.
+  nonMonotonic?: boolean;
+  // bbox at first and last sample
+  bboxStart: { x: number; y: number; w: number; h: number };
+  bboxEnd: { x: number; y: number; w: number; h: number };
+  text?: string;
+  sectionSlug?: string;
+}
+
+interface RawSample {
+  scrollY: number;
+  elements: Array<{
+    sel: string;
+    framerName?: string;
+    tag: string;
+    text?: string;
+    vpTop: number;
+    vpLeft: number;
+    width: number;
+    height: number;
+    docTop: number;
+    transform: string;
+    opacity: string;
+  }>;
+}
+
+export async function captureScrollLinkedMotion(
+  page: Page,
+  sections: SectionInfo[]
+): Promise<{ behaviors: ScrollBehavior[]; sectionBgColors: Map<string, string> }> {
+  // 1. Tag interesting elements with stable ids, return their selectors AND
+  // the data-cs-id that the prior captureComputedStyles pass already assigned.
+  // The cs-id is the durable identifier the rebuild's runtime uses to find
+  // the element in the rendered DOM (data-esi-sm gets stripped after capture).
+  const candidates: Array<{ sel: string; csId: string | null }> = await page.evaluate(() => {
+    const out: Array<{ sel: string; csId: string | null }> = [];
+    let n = 0;
+    const seen = new Set<Element>();
+    const add = (el: Element) => {
+      if (seen.has(el)) return;
+      const r = el.getBoundingClientRect();
+      // Ignore tiny + offscreen/zero — typical hidden helpers.
+      if (r.width < 40 || r.height < 40) return;
+      seen.add(el);
+      const id = `__esi-sm-${n++}`;
+      (el as HTMLElement).dataset.esiSm = id;
+      out.push({ sel: `[data-esi-sm="${id}"]`, csId: el.getAttribute('data-cs-id') });
+    };
+    document.querySelectorAll('[data-framer-name]').forEach(add);
+    document.querySelectorAll('section, header, nav, footer, h1, h2, picture, video, img').forEach(add);
+    document.querySelectorAll('*').forEach((el) => {
+      if (out.length > 600) return;
+      const cs = getComputedStyle(el);
+      if (cs.position === 'sticky' || cs.position === 'fixed') add(el);
+    });
+    return out;
+  });
+  const candidateSelectors = candidates.map((c) => c.sel);
+  const selToCsId = new Map<string, string | null>();
+  for (const c of candidates) selToCsId.set(c.sel, c.csId);
+
+  // 2. Sample at strided scroll positions across the document.
+  const { totalH, vpH } = await page.evaluate(() => ({
+    totalH: document.documentElement.scrollHeight,
+    vpH: window.innerHeight,
+  }));
+  const stride = Math.max(200, Math.round(vpH / 3));
+  const positions = new Set<number>();
+  for (let y = 0; y <= totalH; y += stride) positions.add(y);
+  positions.add(Math.max(0, totalH - vpH));
+  // Densify around section boundaries — that's where transition choreography
+  // lives (bg crossfade, pin handoff, headline exit/enter etc).
+  for (const s of sections) {
+    const top = s.bbox.y;
+    for (const offset of [-vpH, -200, -50, 0, 50, 200, vpH * 0.5]) {
+      const y = Math.max(0, Math.min(totalH, top + offset));
+      positions.add(y);
+    }
+  }
+  const sortedPositions = Array.from(positions).sort((a, b) => a - b);
+
+  const samples: RawSample[] = [];
+  for (const y of sortedPositions) {
+    await page.evaluate((yy) => window.scrollTo(0, yy), y);
+    await page.waitForTimeout(180);
+    const elements: any[] = await page.evaluate((sels) => {
+      return sels
+        .map((sel: string) => {
+          const el = document.querySelector(sel);
+          if (!el) return null;
+          const r = el.getBoundingClientRect();
+          const cs = getComputedStyle(el);
+          return {
+            sel,
+            framerName: (el as HTMLElement).dataset?.framerName,
+            tag: el.tagName.toLowerCase(),
+            text: (el.textContent || '').trim().slice(0, 60) || undefined,
+            vpTop: Math.round(r.top),
+            vpLeft: Math.round(r.left),
+            width: Math.round(r.width),
+            height: Math.round(r.height),
+            docTop: Math.round(r.top + window.scrollY),
+            transform: cs.transform,
+            opacity: cs.opacity,
+          };
+        })
+        .filter(Boolean);
+    }, candidateSelectors);
+    samples.push({ scrollY: y, elements });
+  }
+
+  // 3. Capture per-section dominant bg color while we're at it.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(200);
+  const sectionBg = await page.evaluate(
+    (selectors) => {
+      const out: { slug: string; bg: string }[] = [];
+      for (const { slug, sel } of selectors) {
+        const el = document.querySelector(sel);
+        if (!el) continue;
+        let bg = getComputedStyle(el).backgroundColor;
+        // Walk up if transparent
+        let n: Element | null = el;
+        let depth = 0;
+        while (
+          (bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') &&
+          n &&
+          depth < 5
+        ) {
+          n = n.parentElement;
+          if (n) bg = getComputedStyle(n).backgroundColor;
+          depth++;
+        }
+        out.push({ slug, bg });
+      }
+      return out;
+    },
+    sections.map((s) => ({ slug: s.slug, sel: s.selector }))
+  );
+  const sectionBgColors = new Map<string, string>();
+  for (const { slug, bg } of sectionBg) sectionBgColors.set(slug, bg);
+
+  // 4. Cleanup tags
+  await page.evaluate(() => {
+    document.querySelectorAll('[data-esi-sm]').forEach((el) => {
+      delete (el as HTMLElement).dataset.esiSm;
+    });
+    window.scrollTo(0, 0);
+  });
+
+  // 5. Classify behaviors
+  const behaviors = classifyScrollBehaviors(samples, sections);
+  // 5b. Stamp each behavior with its cs-id for runtime element lookup
+  for (const b of behaviors) {
+    const csId = selToCsId.get(b.selector);
+    if (csId) b.csId = csId;
+  }
+  return { behaviors, sectionBgColors };
+}
+
+function parseTransform(t: string): { scale: number; tx: number; ty: number; rotate: number } {
+  // matrix(a, b, c, d, tx, ty) — scale = sqrt(a*a + b*b), rotate = atan2(b, a)
+  if (!t || t === 'none') return { scale: 1, tx: 0, ty: 0, rotate: 0 };
+  const m2 = t.match(/matrix\(([^)]+)\)/);
+  if (m2) {
+    const v = m2[1].split(',').map((x) => parseFloat(x.trim()));
+    if (v.length >= 6) {
+      const [a, b, , , tx, ty] = v;
+      const scale = Math.sqrt(a * a + b * b);
+      const rotate = (Math.atan2(b, a) * 180) / Math.PI;
+      return { scale, tx, ty, rotate };
+    }
+  }
+  const m3 = t.match(/matrix3d\(([^)]+)\)/);
+  if (m3) {
+    const v = m3[1].split(',').map((x) => parseFloat(x.trim()));
+    if (v.length >= 16) {
+      const [a, b, , , , e] = v;
+      // scale = sqrt of (a*a + b*b)? matrix3d is more complex; just take scale from a if rotation negligible
+      const scale = Math.sqrt(a * a + b * b);
+      const tx = v[12], ty = v[13];
+      const rotate = (Math.atan2(b, a) * 180) / Math.PI;
+      return { scale, tx, ty, rotate };
+    }
+  }
+  return { scale: 1, tx: 0, ty: 0, rotate: 0 };
+}
+
+function classifyScrollBehaviors(samples: RawSample[], sections: SectionInfo[]): ScrollBehavior[] {
+  // Group samples by selector
+  const bySel = new Map<string, Array<{ scrollY: number; e: RawSample['elements'][0] }>>();
+  for (const s of samples) {
+    for (const e of s.elements) {
+      if (!bySel.has(e.sel)) bySel.set(e.sel, []);
+      bySel.get(e.sel)!.push({ scrollY: s.scrollY, e });
+    }
+  }
+
+  const out: ScrollBehavior[] = [];
+  for (const [sel, snaps] of bySel) {
+    if (snaps.length < 3) continue;
+    const sortedByScroll = snaps.slice().sort((a, b) => a.scrollY - b.scrollY);
+
+    // Filter to range where element is in/near viewport (avoids classifying
+    // off-screen normal-flow elements as "scroll-translated" because docTop
+    // never changes but vpTop does — that's just normal flow).
+    const visible = sortedByScroll.filter((s) => {
+      const e = s.e;
+      // Within ±2 viewport heights of the scroll position
+      return e.vpTop > -2000 && e.vpTop < 3000;
+    });
+    if (visible.length < 3) continue;
+
+    // vpTop slope: -1 = normal flow, 0 = pinned, between = parallax
+    const xs = visible.map((s) => s.scrollY);
+    const ys = visible.map((s) => s.e.vpTop);
+    const slope = linearSlope(xs, ys);
+
+    const transforms = visible.map((s) => parseTransform(s.e.transform));
+    const opacities = visible.map((s) => parseFloat(s.e.opacity));
+
+    const scales = transforms.map((t) => t.scale);
+    const txs = transforms.map((t) => t.tx);
+    const tys = transforms.map((t) => t.ty);
+    const rots = transforms.map((t) => t.rotate);
+
+    // ROBUST range: p10..p90, not min..max. A single sample caught mid-entrance
+    // (or one bad frame) otherwise qualifies a channel that is dead flat for
+    // the whole scroll range — that is how a `scale` that never leaves 1.0 and
+    // a `ty` that never leaves 0 both ended up classified as scroll motion.
+    const robustRange = (a: number[]): number => {
+      const v = a.slice().sort((x, y) => x - y);
+      const at = (q: number) => {
+        const i = (v.length - 1) * q;
+        const lo = Math.floor(i);
+        const hi = Math.ceil(i);
+        return lo === hi ? v[lo] : v[lo] + (v[hi] - v[lo]) * (i - lo);
+      };
+      return at(0.9) - at(0.1);
+    };
+    const scaleRange = robustRange(scales);
+    const txRange = robustRange(txs);
+    const tyRange = robustRange(tys);
+    const rotRange = robustRange(rots);
+    const opRange = robustRange(opacities);
+
+    const kinds: ScrollBehaviorKind[] = [];
+    const isPinned = Math.abs(slope) < 0.08;
+    const isParallax = slope > -0.92 && slope < -0.08;
+    const hasScale = scaleRange > 0.05;
+    const hasTx = txRange > 8;
+    const hasTy = tyRange > 8;
+    const hasRot = rotRange > 2;
+    const hasOpacity = opRange > 0.1;
+
+    // parallax is the most over-detected kind: framer's runtime applies
+    // transforms to many wrappers (sections, "Variant 1" containers, etc).
+    // tightening to "true decorations": named decorative element OR small
+    // bbox + named at all. structural unnamed wrappers and big section
+    // roots get dropped — they have no business being parallax-driven and
+    // moving them breaks layout in the rebuild.
+    const fname = visible[0].e.framerName ?? '';
+    const bboxArea = visible[0].e.width * visible[0].e.height;
+    const STRUCTURAL_NAMES = /^(Variant\s*\d+|Main|Intro\s*Content|Name\s*(&|and)\s*(Intro|picture)|With\s*Decoration|Desktop\s*\(?Decoration\)?|Phone\s*\(?Decoration\)?|Service\s*list|List\s*item|Title|Text|Link\s*Text|Link\s*Grid\s*Phone|Social\s*Icon\s*Grid\s*Phone|Phone\s*\(Grid\)|Phone)$/i;
+    const DECORATIVE_NAMES = /^(Tape|Blue\s*tape|Tape\s*blue|Paperclip|Staple|Sticker|Polaroid|Polaroid\s*Phone|Photo|Picture|Profile\s*Shot|Corner|Shadow|noise|Decoration|Cutting\s*Board)$/i;
+    const isStructural = STRUCTURAL_NAMES.test(fname);
+    const isDecorative = DECORATIVE_NAMES.test(fname);
+    const isHuge = bboxArea > 200000;  // ~450x450 — basically a section
+    // PARALLAX NEEDS MEASURED MOTION, NOT A SLOPE GUESS.
+    // vpTopSlope ≈ -1 is normal document flow, and the estimate carries a few
+    // points of noise, so "slope is not exactly -1" proves nothing. Framer
+    // drives real parallax by writing transforms, which shows up here as a
+    // tx/ty range. Emitting slope-only parallax made the rebuild translate
+    // elements that the browser was already positioning correctly — on
+    // framer-ai /solutions/designers that shoved a header 223px out of an
+    // `overflow: clip` ancestor and erased a headline.
+    const hasMeasuredShift = hasTx || hasTy;
+    const allowParallax =
+      isParallax &&
+      hasMeasuredShift &&
+      !isStructural &&
+      !isHuge &&
+      (isDecorative || (fname && bboxArea < 100000));
+
+    if (isPinned && (hasScale || hasTx || hasTy || hasOpacity)) kinds.push('pin-scrub');
+    else if (isPinned) kinds.push('pinned');
+    else if (allowParallax) kinds.push('parallax');
+    if (hasScale && !kinds.includes('pin-scrub')) kinds.push('scroll-scaled');
+    if ((hasTx || hasTy) && !kinds.includes('pin-scrub') && !kinds.includes('parallax')) {
+      kinds.push('scroll-translated');
+    }
+    if (hasRot) kinds.push('scroll-rotated');
+    if (hasOpacity && !kinds.includes('pin-scrub')) kinds.push('scroll-faded');
+
+    if (!kinds.length) continue;
+
+    // Find section by docTop
+    const docTop = visible[0].e.docTop;
+    const docCy = docTop + visible[0].e.height / 2;
+    let bestSection: SectionInfo | undefined;
+    let bestSize = Infinity;
+    for (const s of sections) {
+      const top = s.bbox.y;
+      const bot = s.bbox.y + s.bbox.height;
+      if (docCy < top || docCy > bot) continue;
+      const sizeDelta = Math.abs(s.bbox.height - visible[0].e.height);
+      if (sizeDelta < bestSize) {
+        bestSize = sizeDelta;
+        bestSection = s;
+      }
+    }
+
+    // ── keyframes ────────────────────────────────────────────────────────
+    // Downsample the visible trajectory to at most MAX_KF points, always
+    // keeping the first, the last, and every local extremum of a varying
+    // channel (that's where the shape of the motion actually lives).
+    const MAX_KF = 24;
+    const chan = {
+      scale: hasScale ? scales : null,
+      tx: hasTx ? txs : null,
+      ty: hasTy ? tys : null,
+      rot: hasRot ? rots : null,
+      op: hasOpacity ? opacities : null,
+    };
+    let nonMonotonic = false;
+    const keepIdx = new Set<number>([0, visible.length - 1]);
+    for (const series of Object.values(chan)) {
+      if (!series) continue;
+      let dir = 0;
+      for (let i = 1; i < series.length; i++) {
+        const d = Math.sign(series[i] - series[i - 1]);
+        if (d !== 0 && dir !== 0 && d !== dir) {
+          nonMonotonic = true;
+          keepIdx.add(i - 1); // the extremum itself
+        }
+        if (d !== 0) dir = d;
+      }
+    }
+    // fill remaining budget with an even spread so the curve between
+    // extrema is still followed rather than straight-lined.
+    const budget = Math.max(0, MAX_KF - keepIdx.size);
+    if (budget > 0 && visible.length > keepIdx.size) {
+      const step = visible.length / (budget + 1);
+      for (let k = 1; k <= budget; k++) keepIdx.add(Math.min(visible.length - 1, Math.round(k * step)));
+    }
+    const kf = [...keepIdx]
+      .sort((a, b) => a - b)
+      .map((i) => {
+        const e: { s: number; scale?: number; tx?: number; ty?: number; rot?: number; op?: number } = {
+          s: visible[i].scrollY,
+        };
+        if (chan.scale) e.scale = Math.round(chan.scale[i] * 1000) / 1000;
+        if (chan.tx) e.tx = Math.round(chan.tx[i] * 10) / 10;
+        if (chan.ty) e.ty = Math.round(chan.ty[i] * 10) / 10;
+        if (chan.rot) e.rot = Math.round(chan.rot[i] * 10) / 10;
+        if (chan.op) e.op = Math.round(chan.op[i] * 1000) / 1000;
+        return e;
+      });
+
+    out.push({
+      selector: sel,
+      framerName: visible[0].e.framerName,
+      tag: visible[0].e.tag,
+      kind: kinds,
+      scrollFrom: visible[0].scrollY,
+      scrollTo: visible[visible.length - 1].scrollY,
+      vpTopSlope: Math.round(slope * 100) / 100,
+      scaleStart: hasScale ? Math.round(scales[0] * 1000) / 1000 : undefined,
+      scaleEnd: hasScale ? Math.round(scales[scales.length - 1] * 1000) / 1000 : undefined,
+      translateXStart: hasTx ? Math.round(txs[0]) : undefined,
+      translateXEnd: hasTx ? Math.round(txs[txs.length - 1]) : undefined,
+      translateYStart: hasTy ? Math.round(tys[0]) : undefined,
+      translateYEnd: hasTy ? Math.round(tys[tys.length - 1]) : undefined,
+      rotateStart: hasRot ? Math.round(rots[0]) : undefined,
+      rotateEnd: hasRot ? Math.round(rots[rots.length - 1]) : undefined,
+      opacityStart: hasOpacity ? Math.round(opacities[0] * 100) / 100 : undefined,
+      opacityEnd: hasOpacity ? Math.round(opacities[opacities.length - 1] * 100) / 100 : undefined,
+      keyframes: kf.length >= 3 ? kf : undefined,
+      nonMonotonic: nonMonotonic || undefined,
+      bboxStart: {
+        x: visible[0].e.vpLeft,
+        y: visible[0].e.docTop,
+        w: visible[0].e.width,
+        h: visible[0].e.height,
+      },
+      bboxEnd: {
+        x: visible[visible.length - 1].e.vpLeft,
+        y: visible[visible.length - 1].e.docTop,
+        w: visible[visible.length - 1].e.width,
+        h: visible[visible.length - 1].e.height,
+      },
+      text: visible[0].e.text,
+      sectionSlug: bestSection?.slug,
+    });
+  }
+
+  // Sort by impact: pin-scrub first, then large-scale, then others.
+  out.sort((a, b) => {
+    const score = (b: ScrollBehavior) => {
+      let s = 0;
+      if (b.kind.includes('pin-scrub')) s += 100;
+      if (b.kind.includes('pinned')) s += 50;
+      if (b.kind.includes('parallax')) s += 30;
+      if (b.scaleStart && b.scaleEnd) s += Math.abs(b.scaleEnd - b.scaleStart) * 50;
+      return s;
+    };
+    return score(b) - score(a);
+  });
+  return out;
+}
+
+function linearSlope(xs: number[], ys: number[]): number {
+  const n = xs.length;
+  if (n < 2) return 0;
+  const xMean = xs.reduce((a, b) => a + b, 0) / n;
+  const yMean = ys.reduce((a, b) => a + b, 0) / n;
+  let num = 0, den = 0;
+  for (let i = 0; i < n; i++) {
+    num += (xs[i] - xMean) * (ys[i] - yMean);
+    den += (xs[i] - xMean) ** 2;
+  }
+  return den === 0 ? 0 : num / den;
+}
+
+export async function writeScrollMotionArtifacts(
+  outDir: string,
+  behaviors: ScrollBehavior[],
+  sectionBgColors: Map<string, string>
+) {
+  await mkdir(join(outDir, 'motion'), { recursive: true });
+  await writeFile(
+    join(outDir, 'motion', 'scroll-motion.json'),
+    JSON.stringify({ behaviors, sectionBgColors: Object.fromEntries(sectionBgColors) }, null, 2),
+    'utf8'
+  );
+  const counts = new Map<ScrollBehaviorKind, number>();
+  for (const b of behaviors) for (const k of b.kind) counts.set(k, (counts.get(k) ?? 0) + 1);
+  const summary = Array.from(counts.entries()).map(([k, n]) => `${k}=${n}`).join(' ');
+  console.log(`  🌀 scroll-linked motion: ${behaviors.length} elements (${summary})`);
+}
