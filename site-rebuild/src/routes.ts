@@ -7,6 +7,7 @@ import type { ComponentType } from "react";
 export const routes: Record<string, ReturnType<typeof lazy<ComponentType>>> = {
   "/academy": lazy(() => import("./pages/academy")),
   "/agents": lazy(() => import("./pages/agents")),
+  "/ai": lazy(() => import("./pages/ai")),
   "/cms": lazy(() => import("./pages/cms")),
   "/collaborate": lazy(() => import("./pages/collaborate")),
   "/design": lazy(() => import("./pages/design")),

@@ -4,7 +4,7 @@
 
 export default {
   header: "Your toolkit for building with Agents",
-  regular: "https://framer-ai.com/ai",
+  regular: "/ai",
   label: "Explore AI tools",
   skills: "Skills",
   skills_2: "/cms",

@@ -4,7 +4,7 @@
 
 export default {
   header: "Faster ideas. Better designs. Still yours.",
-  regular: "https://framer-ai.com/ai",
+  regular: "/ai",
   label: "Design with AI",
   hero2: { src: "../../../framerusercontent.com/images/NGJAnJajvBrK1SEEjxh78Qdgee45.jpg?width=2400&height=1600", alt: "Hero design preview" },
   hero1: { src: "../../../framerusercontent.com/images/cfgKNHtptOS5ZoQgFRDgaMANZjY7c17.jpg?width=1314&height=876", alt: "Hero design preview" },

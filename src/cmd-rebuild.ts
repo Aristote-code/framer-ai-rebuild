@@ -598,6 +598,15 @@ function parseTransformToMotionProps(t: string | undefined): Record<string, numb
       case "skewY": out.skewY = parseFloat(args[0]); break;
     }
   }
+  // BAIL on anything we couldn't parse to a real number. Framer emits
+  // `translate(calc(-50% - 9.2px), -50%)` for centring-with-an-offset, and
+  // `parseFloat("calc(…)")` is NaN — which serialises into the generated JSX as
+  // `initial={{ x: null }}`, failing `tsc -b` and handing framer-motion a null.
+  // Returning null routes the effect to the runtime instead, which replays the
+  // raw transform string via a CSS transition and interpolates calc() fine.
+  for (const v of Object.values(out)) {
+    if (typeof v === "number" && !Number.isFinite(v)) return null;
+  }
   // drop identity values — they add noise and animate to themselves anyway
   for (const [k, v] of Object.entries(out)) {
     const idle = k === "scale" || k === "scaleX" || k === "scaleY" ? 1 : 0;

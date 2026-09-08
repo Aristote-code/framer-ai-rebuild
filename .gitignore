@@ -23,3 +23,8 @@ site-rebuild-prev/
 # logs / scratch
 *.log
 .DS_Store
+
+# Netlify CLI artifacts: local site linkage and the deploy bundle it zips up
+# (that zip is ~72 MB and regenerated on every deploy).
+.netlify/
+deploy-*.zip

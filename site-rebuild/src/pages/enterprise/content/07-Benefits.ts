@@ -23,7 +23,7 @@ export default {
   promptInput: "._Rmdepakil5dp_::placeholder { color: var(--token-f5637926-8ee6-41cb-a320-ec3462d62cd5, rgba(255, 255, 255, 0.4)); opacity: 1; }",
   aiModel: "GPT 5.6",
   aiModel_2: "Terra",
-  l_3: "https://framer-ai.com/ai",
+  l_3: "/ai",
   l_4: "Design with an agent",
   text_3: "Start from a prompt and watch the agent generate layouts, sections, and visual style directly on your canvas. Refine typography, spacing, and color until it looks exactly right.",
   branches: "Branches",

@@ -6,7 +6,7 @@ export default {
   on: "/",
   on_2: "Framer",
   item: "Product",
-  label: "https://framer-ai.com/ai",
+  label: "/ai",
   item_2: "AI",
   small: "New",
   label_2: "/",

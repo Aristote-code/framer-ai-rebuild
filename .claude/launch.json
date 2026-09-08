@@ -18,6 +18,15 @@
         "cd /Users/ariga/Documents/extract-site-main/framer-ai-designers-rebuild2 && bun run dev -- --port 5174"
       ],
       "port": 5174
+    },
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/ariga/Documents/aristote-portfolio-revamp && npm run dev -- --port 5175"
+      ],
+      "port": 5175
     }
   ]
 }

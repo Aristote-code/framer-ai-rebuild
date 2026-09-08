@@ -4,7 +4,7 @@
 
 export default {
   title: "Everything your site needs, built into Framer",
-  large: "https://framer-ai.com/ai",
+  large: "/ai",
   title_2: "AI",
   title_3: "Generate, iterate, and improve sites faster.",
   large_2: "/agents",

@@ -7,7 +7,7 @@ export default {
   large: "/design",
   title_2: "Design",
   title_3: "Design responsive sites on a visual canvas.",
-  large_2: "https://framer-ai.com/ai",
+  large_2: "/ai",
   title_4: "AI",
   title_5: "Generate, iterate, and improve sites faster.",
   large_3: "/agents",

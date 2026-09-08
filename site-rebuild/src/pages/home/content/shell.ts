@@ -33,7 +33,7 @@ export default {
   on_3: "/",
   on_4: "Framer",
   item: "Product",
-  label: "https://framer-ai.com/ai",
+  label: "/ai",
   item_2: "AI",
   small: "New",
   label_2: "/agents",
