@@ -85,6 +85,9 @@ export interface MotionData {
   scroll: { behaviors: ScrollBehaviorSpec[] };
   hover?: HoverSpec[];
   appearTiming?: CdpTimingSpec[];
+  /** cs-ids whose entrance was compiled into framer-motion props — the scroll
+   *  runtime must not also step-reveal them. */
+  inlinedEntrance?: string[];
 }
 
 // ─── easing / timing ─────────────────────────────────────────────────────
@@ -188,6 +191,12 @@ function mountAppearEffects(effects: AppearEffectSpec[], timingTable: CdpTimingS
         const el = entry.target as HTMLElement;
         const initialJSON = el.dataset.appearInit;
         if (!initialJSON) continue;
+        // REVEAL ONCE. StrictMode double-invokes the mount, so there are two
+        // observers watching the same element. Without this guard the second
+        // one re-runs the reveal after the first has already consumed
+        // `appearRestTf`, and restores `none` over the correct transform.
+        if (el.dataset.appearDone) { observer.unobserve(el); continue; }
+        el.dataset.appearDone = '1';
         const initial: Record<string, string> = JSON.parse(initialJSON);
         // measured timing (joined at generation time), framer-default fallback.
         const duration = el.dataset.appearDur ? parseFloat(el.dataset.appearDur) : DEFAULT_APPEAR_DUR;
@@ -201,13 +210,23 @@ function mountAppearEffects(effects: AppearEffectSpec[], timingTable: CdpTimingS
         el.style.transition = props.map((p) => `${p} ${duration}s ${ease}`).join(', ');
         requestAnimationFrame(() => {
           if ('opacity' in initial) el.style.opacity = '1';
-          if ('transform' in initial) el.style.transform = 'none';
+          if ('transform' in initial) {
+            // Reveal to the element's RESTING transform, not to `none`.
+            // A Framer appear-initial often carries only the GPU-promotion hack
+            // (`translateZ(0px)`) while the element's real transform is part of
+            // its LAYOUT — on /ai one wrapper rests at
+            // `matrix(1,0,0,1,-375,-173)`, and resetting to `none` on reveal
+            // jumped it +375,+173, displacing a whole product visual.
+            el.style.transform = el.dataset.appearRestTf || 'none';
+          }
           if ('filter' in initial) el.style.filter = 'blur(0px)';
         });
         observer.unobserve(el);
         window.setTimeout(() => {
           el.style.transition = '';
           delete el.dataset.appearInit;
+          delete el.dataset.appearRestTf;
+          delete el.dataset.appearDone;
           delete el.dataset.appearDur;
           delete el.dataset.appearEase;
         }, duration * 1000 + 80);
@@ -227,6 +246,31 @@ function mountAppearEffects(effects: AppearEffectSpec[], timingTable: CdpTimingS
     if (hit) precise++;
     const duration = hit?.duration ?? fx.duration;
     const easing = hit?.easing ?? fx.easing;
+    // Snapshot the resting transform BEFORE the initial overwrites it — this
+    // is the value the generator inlined from computed styles, i.e. where the
+    // element belongs once revealed.
+    // IDEMPOTENT: React StrictMode double-invokes effects, so this runs twice.
+    // On the second pass the inline transform is already the appear-initial, and
+    // re-snapshotting would overwrite the real resting value with it (that's how
+    // `matrix(1,0,0,1,-375,-173)` became `translateZ(0px)` and then `none`).
+    // `appearInit` is only set after the initial has been applied, so its
+    // presence marks "a previous mount already snapshotted this".
+    if ('transform' in fx.initial && !el.dataset.appearInit) {
+      const rest = el.style.transform;
+      // Only treat the inlined transform as a RESTING pose when it differs
+      // from the appear-initial. The generator inlines the transform it
+      // captured, and for a below-fold element that capture happened BEFORE
+      // the entrance played — so the inlined value IS the initial pose.
+      // Restoring it then re-applies the offset the entrance was supposed to
+      // remove (this regressed /agents by 25 diffs). When they differ, the
+      // inlined value is genuine layout — /ai has a wrapper resting at
+      // matrix(1,0,0,1,-375,-173) whose initial is only translateZ(0px).
+      const norm = (v: string) => v.replace(/\s+/g, '');
+      const initTf = String(fx.initial.transform ?? '');
+      if (rest && rest !== 'none' && norm(rest) !== norm(initTf)) {
+        el.dataset.appearRestTf = rest;
+      }
+    }
     // apply initial state inline (overrides any current style)
     for (const [prop, val] of Object.entries(fx.initial)) {
       el.style.setProperty(prop, val);
@@ -271,7 +315,7 @@ function scrollProgress(y: number, from: number, to: number): number {
   return Math.max(0, Math.min(1, (y - from) / span));
 }
 
-function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
+function mountScrollMotion(behaviors: ScrollBehaviorSpec[], inlinedEntrance: Set<string> = new Set()): number {
   const parallaxBindings: BoundParallax[] = [];
   const scrubBindings: BoundScrub[] = [];
   const flowBindings: {
@@ -279,6 +323,7 @@ function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
     spec: ScrollBehaviorSpec;
     ramps: Record<KfChannel, boolean>;
   }[] = [];
+  const stepBindings: { el: HTMLElement; spec: ScrollBehaviorSpec; step: StepReveal; done: boolean }[] = [];
   const boundEls = new Set<HTMLElement>();
   let matched = 0;
 
@@ -311,6 +356,27 @@ function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
         !!pkf && (channelShape(pkf, 'ty') === 'ramp' || channelShape(pkf, 'tx') === 'ramp');
       if (!measured) continue;
       candidates.push({ el, spec: b });
+    } else if (
+      b.keyframes &&
+      b.keyframes.length >= 3 &&
+      (b.kind.includes('scroll-scaled') ||
+        b.kind.includes('scroll-translated') ||
+        b.kind.includes('scroll-rotated') ||
+        b.kind.includes('scroll-faded')) &&
+      !hasScrollRamp(b) &&
+      // the appear path owns anything with an entrance — don't double-drive.
+      // `appearInit` only marks RUNTIME-handled effects; entrances compiled
+      // into framer-motion props are invisible at runtime, so the generator
+      // passes their cs-ids explicitly. Missing that check made 19 elements on
+      // /agents both animate and get step-revealed, fighting over transform.
+      !el.dataset.appearInit &&
+      !(el.dataset.csId && inlinedEntrance.has(el.dataset.csId)) &&
+      stepRevealOf(b)
+    ) {
+      // STEP REVEAL: no continuous ramp, but the channel jumps at a scroll
+      // position. Without this the element sits at its captured (dim) resting
+      // value forever, because nothing else will ever touch it.
+      stepBindings.push({ el, spec: b, step: stepRevealOf(b)!, done: false });
     } else if (
       b.keyframes &&
       b.keyframes.length >= 3 &&
@@ -377,7 +443,7 @@ function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
   // pin-scrub elements pin the same way; we only drive their scrubbed
   // scale/translate/opacity below (1b).
 
-  if (parallaxBindings.length === 0 && scrubBindings.length === 0 && flowBindings.length === 0) return matched;
+  if (parallaxBindings.length === 0 && scrubBindings.length === 0 && flowBindings.length === 0 && stepBindings.length === 0) return matched;
 
   let raf = 0;
   let lastY = -1;
@@ -485,6 +551,28 @@ function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
       const op = ramps.op ? sampleKf(kf, 'op', y) : undefined;
       if (op != null) el.style.opacity = op.toFixed(3);
     }
+
+    // step reveals: fire once when scroll passes the step point, then never
+    // touch the element again (scrolling back up must not re-dim it).
+    for (const b of stepBindings) {
+      if (b.done || y < b.step.at) continue;
+      b.done = true;
+      const parts: string[] = [];
+      if (b.step.to.tx != null || b.step.to.ty != null) {
+        parts.push(`translate3d(${(b.step.to.tx ?? 0).toFixed(2)}px, ${(b.step.to.ty ?? 0).toFixed(2)}px, 0)`);
+      }
+      if (b.step.to.rot != null) parts.push(`rotate(${b.step.to.rot.toFixed(2)}deg)`);
+      if (b.step.to.scale != null) parts.push(`scale(${b.step.to.scale.toFixed(4)})`);
+      const props: string[] = [];
+      if (parts.length) props.push('transform');
+      if (b.step.to.op != null) props.push('opacity');
+      b.el.style.transition = props.map((p) => `${p} ${DEFAULT_APPEAR_DUR}s ${DEFAULT_CSS_EASE}`).join(', ');
+      requestAnimationFrame(() => {
+        if (parts.length) b.el.style.transform = parts.join(' ');
+        if (b.step.to.op != null) b.el.style.opacity = String(b.step.to.op);
+      });
+      window.setTimeout(() => { b.el.style.transition = ''; }, DEFAULT_APPEAR_DUR * 1000 + 80);
+    }
   };
 
   const onScroll = () => {
@@ -494,7 +582,7 @@ function mountScrollMotion(behaviors: ScrollBehaviorSpec[]): number {
   window.addEventListener('scroll', onScroll, { passive: true });
   update();
   console.log(
-    `[motion-runtime] scroll: ${parallaxBindings.length} parallax, ${scrubBindings.length} pin-scrub, ${flowBindings.length} in-flow scrub bound`,
+    `[motion-runtime] scroll: ${parallaxBindings.length} parallax, ${scrubBindings.length} pin-scrub, ${flowBindings.length} in-flow scrub, ${stepBindings.length} step-reveal bound`,
   );
   return matched;
 }
@@ -601,6 +689,69 @@ export function channelShape(
   return bandSpan / totalSpan < 0.3 ? 'step' : 'ramp';
 }
 
+// ─── step reveals ────────────────────────────────────────────────────────
+// A channel whose whole change happens in a tiny slice of its scroll range is
+// not a scrub — it's a REVEAL triggered at a scroll position. Framer implements
+// these staged section reveals in its own runtime, emitting no appear-CSS block,
+// so the captured scroll step is the ONLY evidence they exist: on framer-ai's
+// /ai page six blocks (Generate, Design, Manage, Code, Review, Improve) rest at
+// opacity 0.213 with a step to 1, and five of them have no appear effect at all.
+// Treating step as "not a ramp, therefore ignore" left all six permanently
+// dimmed — the section looked half-loaded.
+//
+// Replay them ONE-WAY: when scroll passes the step point, transition to the
+// post-step pose and stop. One-way matters — re-dimming on scroll up is exactly
+// the artefact that makes a replayed entrance look wrong.
+export interface StepReveal {
+  at: number;
+  to: Partial<Record<KfChannel, number>>;
+}
+
+export function stepRevealOf(spec: ScrollBehaviorSpec): StepReveal | null {
+  const kf = spec.keyframes;
+  if (!kf || kf.length < 3) return null;
+  let at = Infinity;
+  let stepped = false;
+  const to: Partial<Record<KfChannel, number>> = {};
+  for (const ch of ['scale', 'tx', 'ty', 'rot', 'op'] as KfChannel[]) {
+    const pts = kf.filter((k) => k[ch] != null).map((k) => ({ s: k.s, v: k[ch] as number }));
+    if (!pts.length) continue;
+    // RECORD EVERY MEASURED CHANNEL, not just the stepping ones. The reveal
+    // rewrites `transform` wholesale, so a channel that's merely CONSTANT
+    // (a layout scale, say) still has to be re-emitted or it's destroyed —
+    // dropping flat channels made 23 elements on /agents 37px narrower.
+    to[ch] = pts[pts.length - 1].v; // settled pose
+    if (channelShape(kf, ch) !== 'step' || pts.length < 2) continue;
+    stepped = true;
+    const vals = pts.map((p) => p.v).slice().sort((a, b) => a - b);
+    const lo = pct(vals, 0.1);
+    const hi = pct(vals, 0.9);
+    const mid = (lo + hi) / 2;
+    const rising = to[ch]! >= pts[0].v;
+    for (let i = 1; i < pts.length; i++) {
+      const crossed = rising ? pts[i].v >= mid : pts[i].v <= mid;
+      if (crossed) { at = Math.min(at, pts[i].s); break; }
+    }
+  }
+  // only a genuine step justifies a reveal; a purely flat/ramp element isn't ours
+  if (!stepped || !Number.isFinite(at)) return null;
+
+  // REQUIRE AN OPACITY STEP THAT REVEALS.
+  // The defect this exists for is "element stuck dim" (/ai had six blocks
+  // pinned at opacity 0.2 with no entrance to lift them). A step in some other
+  // channel is a different animal: /agents has elements whose SCALE steps to
+  // 0.95 as they scroll away — a de-emphasis, not a reveal. Applying that
+  // settled pose permanently shrank 23 elements from 736px to 699px
+  // (736 × 0.95 = 699.2) and cost 49 diffs. So only fire when opacity steps
+  // UPWARD, and leave every other kind of step to the scrub path or to nothing.
+  const opPts = kf.filter((k) => k.op != null).map((k) => k.op as number);
+  if (opPts.length < 2) return null;
+  const revealsOpacity = channelShape(kf, 'op') === 'step' && opPts[opPts.length - 1] > opPts[0];
+  if (!revealsOpacity) return null;
+
+  return { at, to };
+}
+
 // A non -1 vpTop slope does NOT imply parallax. If any ancestor is sticky or
 // fixed, the browser is already holding this element back as you scroll — that
 // IS the measured slope. Translating it in JS on top of that double-moves it,
@@ -698,7 +849,7 @@ export function mountMotion(data: MotionData, opts: MountOptions = {}): MountRes
   const enableParallax = opts.enableParallax ?? true;
   const appearMatched = mountAppearEffects(data.appear?.effects ?? [], data.appearTiming ?? []);
   const scrollMatched = enableParallax
-    ? mountScrollMotion(data.scroll?.behaviors ?? [])
+    ? mountScrollMotion(data.scroll?.behaviors ?? [], new Set(data.inlinedEntrance ?? []))
     : 0;
   const hoverMatched = mountHover(data.hover ?? []);
   const result: MountResult = {

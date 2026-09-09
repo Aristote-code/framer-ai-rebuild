@@ -309,8 +309,10 @@
 .hv-1765:hover .hvt-1766 { opacity: 0.8 !important; }
 .hv-1766 { transition: opacity 0.2s ease; }
 .hv-1766:hover { opacity: 0.8 !important; }
+.hvt-1779 { transition: opacity 0.2s ease; }
+.hv-1778:hover .hvt-1779 { opacity: 1 !important; }
 .hv-1789 { transition: opacity 0.2s ease; }
-.hv-1789:hover { opacity: 0.8 !important; }
+.hv-1789:hover { opacity: 0.800315 !important; }
 .hvt-1809 { transition: opacity 0.2s ease; }
 .hv-1808:hover .hvt-1809 { opacity: 1 !important; }
 .hv-1809 { transition: opacity 0.2s ease; }

@@ -579,8 +579,8 @@
       "easing": "linear"
     },
     {
-      "id": "appear-150",
-      "csId": "1668",
+      "id": "appear-177",
+      "csId": "1866",
       "framerName": null,
       "appearId": null,
       "initial": {
@@ -592,8 +592,8 @@
       "easing": "linear"
     },
     {
-      "id": "appear-151",
-      "csId": "1670",
+      "id": "appear-178",
+      "csId": "1868",
       "framerName": null,
       "appearId": null,
       "initial": {
@@ -601,7 +601,7 @@
         "transform": "translateZ(0px)",
         "will-change": "mask-image, opacity"
       },
-      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: radial-gradient(44px 126px at 91.5px 101.048px, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.96) 18%, rgba(0, 0, 0, 0.72) 34%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.08) 58%, rgba(0, 0, 0, 0) 66%);",
+      "rawStyle": "position: absolute; inset: 0px; border: 1px solid rgb(0, 153, 255); box-sizing: border-box; opacity: 0.98; mix-blend-mode: plus-lighter; mask-repeat: no-repeat; transform: translateZ(0px); will-change: mask-image, opacity; border-radius: 0px; mask-image: radial-gradient(196.98px 117.18px at 281.813px 278.5px, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.96) 18%, rgba(0, 0, 0, 0.72) 34%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.08) 58%, rgba(0, 0, 0, 0) 66%);",
       "duration": 0.75,
       "easing": "linear"
     }

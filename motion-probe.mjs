@@ -14,7 +14,14 @@ const out = process.argv[4] || "/tmp/motion-probe.json";
 
 // MUST be headed: motion/react + GSAP reveals are rAF/IntersectionObserver-driven
 // and frequently don't run under headless, so a headless capture finds 0 motion.
-const browser = await chromium.launch({ headless: false });
+// MUST match the capture conditions. `extract-site` captures with
+// --hide-scrollbars, so full-width elements resolve to 1440px and get inlined
+// at that size. Measuring the LIVE page in a browser that draws a classic
+// 15px scrollbar lays it out at 1425 instead, so every centred element reads
+// ~7px off and every full-width one ~15px narrow — 244 phantom diffs on a page
+// that actually had 69. (Older Chromium used overlay scrollbars here, which is
+// why this only surfaced after a version bump.)
+const browser = await chromium.launch({ headless: false, args: ['--hide-scrollbars'] });
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
 const page = await ctx.newPage();
 

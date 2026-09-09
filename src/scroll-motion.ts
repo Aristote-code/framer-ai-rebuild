@@ -115,9 +115,20 @@ export async function captureScrollLinkedMotion(
     document.querySelectorAll('[data-framer-name]').forEach(add);
     document.querySelectorAll('section, header, nav, footer, h1, h2, picture, video, img').forEach(add);
     document.querySelectorAll('*').forEach((el) => {
-      if (out.length > 600) return;
+      if (out.length > 900) return;
       const cs = getComputedStyle(el);
-      if (cs.position === 'sticky' || cs.position === 'fixed') add(el);
+      if (cs.position === 'sticky' || cs.position === 'fixed') { add(el); return; }
+      // ALSO large absolutely-positioned elements, even unnamed ones. Framer
+      // scroll-translates plain wrappers that carry no data-framer-name, and
+      // the rules above can't see them: on /ai an unnamed absolute div moves
+      // translate(-375px, -173px) across its range, and because it was never
+      // sampled the rebuild left it at none — displacing a whole product
+      // visual by 375px. Size-gated so this doesn't balloon the sample set
+      // (every candidate is measured at ~36 scroll positions).
+      if (cs.position === 'absolute') {
+        const r = el.getBoundingClientRect();
+        if (r.width >= 200 && r.height >= 150) add(el);
+      }
     });
     return out;
   });

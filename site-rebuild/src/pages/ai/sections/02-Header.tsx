@@ -757,7 +757,7 @@ export function Header() {
                                   <p style={{ width: "230px", height: "12px", position: "static", display: "block", flexDirection: "row", fontFamily: "Inter, \"Inter Placeholder\", sans-serif", fontWeight: "500", lineHeight: "1em", color: "rgb(102, 102, 102)", fontSize: "12px", fontStyle: "normal", letterSpacing: "0em", marginBlock: "0px" } as CSSProperties}>
                                     {content.top}
                                   </p>
-                                  <p aria-hidden="true" className="text-shimmer-r5s" style={{ width: "230px", height: "12px", position: "absolute", zIndex: "1", display: "block", flexDirection: "row", fontFamily: "Inter, \"Inter Placeholder\", sans-serif", fontWeight: "500", lineHeight: "1em", color: "transparent", fontSize: "12px", fontStyle: "normal", letterSpacing: "0em", inset: "0px", marginBlock: "0px", pointerEvents: "none" } as CSSProperties}>
+                                  <p aria-hidden="true" className="text-shimmer-r5e" style={{ width: "230px", height: "12px", position: "absolute", zIndex: "1", display: "block", flexDirection: "row", fontFamily: "Inter, \"Inter Placeholder\", sans-serif", fontWeight: "500", lineHeight: "1em", color: "transparent", fontSize: "12px", fontStyle: "normal", letterSpacing: "0em", inset: "0px", marginBlock: "0px", pointerEvents: "none" } as CSSProperties}>
                                     {content.top_2}
                                   </p>
                                 </div>

@@ -206,7 +206,7 @@ export default {
   loading: "https://www.framerstatus.com/",
   item_97: "Checking status",
   footerBar_2: "https://openrouter.ai/apps/framer",
-  footerBar_3: "346B",
+  footerBar_3: "341B",
   update: "tokens processed this week",
   variant1: "2026",
   variant1_2: "Framer",
